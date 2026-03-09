@@ -11,8 +11,6 @@ public class Main {
     }
 
     public static int login() {
-        Scanner sc = new Scanner(System.in);
-
         List<String[]> listaDeFilas;
         int usertype;
 
