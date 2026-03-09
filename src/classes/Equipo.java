@@ -1,6 +1,5 @@
 package classes;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +18,8 @@ public class Equipo {
         this.añoFundacion = añoFundacion;
         this.ciudad = ciudad;
         this.jugadores = new ArrayList<>();
+        this.estadio = "No asignado";
+        this.presidente = "No asignado";
     }
 
     public Equipo(String nombre, int añoFundacion, String ciudad, String estadio, String presidente) {
@@ -28,8 +29,8 @@ public class Equipo {
     }
 
     public double calcularCalidadMedia() {
-        if (jugadores.isEmpty()) {
-            return 0;
+        if (jugadores == null || jugadores.isEmpty()) {
+            return 0.0;
         }
         double sumaCalidad = 0;
         for (Jugador j : jugadores) {

@@ -27,10 +27,17 @@ public class Jugador extends Persona {
     public void canviDePosicio() {
         Random rand = new Random();
         if (rand.nextInt(100) < 5) {
+            Posicion antiguaPosicion = this.posicion;
             Posicion[] posiciones = Posicion.values();
-            this.posicion = posiciones[rand.nextInt(posiciones.length)];
+            Posicion nuevaPosicion;
+
+            do {
+                nuevaPosicion = posiciones[rand.nextInt(posiciones.length)];
+            } while (nuevaPosicion == antiguaPosicion);
+
+            this.posicion = nuevaPosicion;
             this.calidad += 1;
-            System.out.println("¡Cambio de posición realizado! Nueva posición: " + this.posicion + ". Calidad aumentada a: " + this.calidad);
+            System.out.println("¡Cambio de posición! " + getNombre() + " pasa de " + antiguaPosicion + " a " + this.posicion + ". Calidad aumentada a: " + this.calidad);
         }
     }
 
@@ -51,6 +58,11 @@ public class Jugador extends Persona {
 
         this.calidad += incremento;
         System.out.println("Entrenamiento de jugador finalizado. Incremento de calidad: " + incremento);
+    }
+
+    @Override
+    public String toString() {
+        return "J," + dorsal + "," + posicion + "," + calidad + "," + motivacion + "," + sueldo;
     }
 
     @Override

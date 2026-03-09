@@ -25,8 +25,8 @@ public class Entrenador extends Persona {
             this.motivacion += 0.15;
         }
 
-        if (this.motivacion > 10) {
-            this.motivacion = 10;
+        if (this.motivacion > 10.0) {
+            this.motivacion = 10.0;
         }
     }
 
