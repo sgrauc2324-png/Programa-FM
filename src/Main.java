@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class Main {
     public static void main() {
@@ -28,6 +29,7 @@ public class Main {
         boolean passwordIgual = false;
         String confirmarPassword;
         String nuevoPassword;
+        String hashedPassword;
 
         System.out.println("¿Quieres crear una cuenta nueva? (Si/No)");
         String cuentaNueva = sc.nextLine();
@@ -64,8 +66,10 @@ public class Main {
                 }
             } while (!passwordIgual);
 
+            hashedPassword = BCrypt.hashpw(nuevoPassword, BCrypt.gensalt(12));
+
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/txt/Login.txt", true))) {
-                bw.write(username + "," + nuevoPassword + "," + usertype);
+                bw.write(username + "," + hashedPassword + "," + usertype);
                 bw.newLine();
             } catch (IOException e) {
                 System.out.println("Error al guardar.");
@@ -85,6 +89,7 @@ public class Main {
         String password;
         int usertype = 0;
         boolean passwordCorrecto = false;
+        boolean coincide = false;
 
         do {
             System.out.println("Introduce tu nombre de usuario:");
@@ -94,13 +99,13 @@ public class Main {
             }
         } while (!salir);
 
-
         for (String[] fila : listaDeFilas) {
             if (fila.length > 0 && fila[0].equals(username)) {
                 System.out.println("Introduce tu contraseña.");
                 do {
                     password = sc.nextLine();
-                    if (fila[1].equals(password)) {
+
+                    if (BCrypt.checkpw(password, fila[1])) {
                         passwordCorrecto = true;
                         usertype = Integer.parseInt(fila[2].trim());
                     } else {

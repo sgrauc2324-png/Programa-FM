@@ -1,2 +1,2 @@
-Admin,1234,1
-Manager,1234,2
+Admin,$2a$12$eY6eR2qVULqmlVIlRFaCh.EjS5CBLlYAJKyBVmbm/xqzijhMJFD3S,1
+Manager,$2a$12$MLLxFlpUO/CTHZWamtevUekEQZK2BtdkBpPLhUwE5RjVk4iRw5qrW,2
