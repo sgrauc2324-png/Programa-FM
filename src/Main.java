@@ -6,16 +6,11 @@ import java.util.Scanner;
 public class Main {
     public static void main() {
         int usertype = login();
-
-        System.out.println("Sesión iniciada con tipo: " + usertype);
     }
 
     public static int login() {
-        List<String[]> listaDeFilas;
-        int usertype;
-
-        listaDeFilas = cargarUsuarios();
-        usertype = iniciarSesion(listaDeFilas);
+        List<String[]> listaDeFilas = cargarUsuarios();
+        int usertype = iniciarSesion(listaDeFilas);
         if (usertype == 0) {
             usertype = crearCuenta();
         }
@@ -26,7 +21,7 @@ public class Main {
     private static int crearCuenta() {
         Scanner sc = new Scanner(System.in);
 
-        String username = "";
+        String username;
         int usertype = 0;
         boolean usernameValido = false;
         boolean usertypeCorrecto = false;
