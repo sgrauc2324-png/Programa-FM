@@ -1,0 +1,2 @@
+DATOS_EQUIPO;Alibaba FC;1939;Soria;Onomatopeya Soria Center;Kim Min Jae
+PLANTILLA_JUGADORES:

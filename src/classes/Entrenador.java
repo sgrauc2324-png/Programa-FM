@@ -30,6 +30,11 @@ public class Entrenador extends Persona {
         }
     }
 
+    @Override
+    public String toString() {
+        return "ENTRENADOR," + getNombre() + "," + getApellido() + "," + getFechaNacimiento() + "," + getSueldo() + "," + torneosGanados + "," + esSeleccionador;
+    }
+
     public int getTorneosGanados() {
         return torneosGanados;
     }

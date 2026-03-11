@@ -36,8 +36,11 @@ public class Liga {
     }
 
     private void jugarPartido(EstadisticaEquipo local, EstadisticaEquipo visitante, Random rand) {
-        double calidadLocal = local.getEquipo().calcularCalidadMedia() + (local.getEquipo().getEntrenador().getMotivacion() * 0.5);
-        double calidadVisitante = visitante.getEquipo().calcularCalidadMedia() + (visitante.getEquipo().getEntrenador().getMotivacion() * 0.5);
+        double motivacionLocal = (local.getEquipo().getEntrenador() != null) ? local.getEquipo().getEntrenador().getMotivacion() : 5.0;
+        double motivacionVisitante = (visitante.getEquipo().getEntrenador() != null) ? visitante.getEquipo().getEntrenador().getMotivacion() : 5.0;
+
+        double calidadLocal = local.getEquipo().calcularCalidadMedia() + (motivacionLocal * 0.5);
+        double calidadVisitante = visitante.getEquipo().calcularCalidadMedia() + (motivacionVisitante * 0.5);
 
         int golesLocal = rand.nextInt((int) (calidadLocal / 10) + 1);
         int golesVisitante = rand.nextInt((int) (calidadVisitante / 10) + 1);
@@ -51,7 +54,7 @@ public class Liga {
                 .thenComparingInt(e -> e.getGolesFavor() - e.getGolesContra())
                 .reversed());
 
-        System.out.println("\n--- Clasificación: " + nombre + " ---");
+        System.out.println("\n--- Clasificacion: " + nombre + " ---");
         for (EstadisticaEquipo e : clasificacion) {
             System.out.println(String.format("%s | Puntos: %d | PJ: %d | GF: %d | GC: %d",
                     e.getEquipo().getNombre(), e.getPuntos(), e.getPartidosJugados(), e.getGolesFavor(), e.getGolesContra()));

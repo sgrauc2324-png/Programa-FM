@@ -24,8 +24,8 @@ public class Equipo {
 
     public Equipo(String nombre, int añoFundacion, String ciudad, String estadio, String presidente) {
         this(nombre, añoFundacion, ciudad);
-        this.estadio = estadio;
-        this.presidente = presidente;
+        this.estadio = (estadio == null || estadio.isEmpty()) ? "No asignado" : estadio;
+        this.presidente = (presidente == null || presidente.isEmpty()) ? "No asignado" : presidente;
     }
 
     public double calcularCalidadMedia() {
@@ -37,6 +37,11 @@ public class Equipo {
             sumaCalidad += j.getCalidad();
         }
         return sumaCalidad / jugadores.size();
+    }
+
+    @Override
+    public String toString() {
+        return "DATOS_EQUIPO;" + nombre + ";" + añoFundacion + ";" + ciudad + ";" + estadio + ";" + presidente;
     }
 
     public String getNombre() {

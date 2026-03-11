@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.Random;
 
 public class Jugador extends Persona {
-
     public enum Posicion {
         POR, DEF, MIG, DAV
     }
@@ -37,7 +36,9 @@ public class Jugador extends Persona {
 
             this.posicion = nuevaPosicion;
             this.calidad += 1;
-            System.out.println("¡Cambio de posición! " + getNombre() + " pasa de " + antiguaPosicion + " a " + this.posicion + ". Calidad aumentada a: " + this.calidad);
+            if (this.calidad > 100) this.calidad = 100;
+
+            System.out.println("Cambio de posicion! " + getNombre() + " pasa de " + antiguaPosicion + " a " + this.posicion + ". Calidad aumentada a: " + this.calidad);
         }
     }
 
@@ -57,12 +58,14 @@ public class Jugador extends Persona {
         }
 
         this.calidad += incremento;
-        System.out.println("Entrenamiento de jugador finalizado. Incremento de calidad: " + incremento);
+        if (this.calidad > 100) this.calidad = 100;
+
+        System.out.println("Entrenamiento finalizado. Incremento de calidad: " + incremento);
     }
 
     @Override
     public String toString() {
-        return "J," + dorsal + "," + posicion + "," + calidad + "," + motivacion + "," + sueldo;
+        return "JUGADOR," + getNombre() + "," + getApellido() + "," + getFechaNacimiento() + "," + getSueldo() + "," + dorsal + "," + posicion + "," + calidad;
     }
 
     @Override
@@ -92,7 +95,15 @@ public class Jugador extends Persona {
         return posicion;
     }
 
+    public void setPosicion(Posicion posicion) {
+        this.posicion = posicion;
+    }
+
     public double getCalidad() {
         return calidad;
+    }
+
+    public void setCalidad(double calidad) {
+        this.calidad = calidad;
     }
 }
