@@ -15,7 +15,10 @@ public class Main {
 
     public static void main(String[] args) {
         int usertype = login();
+        menus(usertype);
+    }
 
+    private static void menus(int usertype) {
         if (usertype == 1) {
             menuAdmin();
         } else if (usertype == 2) {
