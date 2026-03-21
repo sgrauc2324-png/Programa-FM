@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.time.LocalDate;
-import org.mindrot.jbcrypt.BCrypt;
+import JBcrypt.BCrypt;
 import classes.Equipo;
 import classes.Jugador;
 import classes.Entrenador;
